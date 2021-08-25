@@ -1,0 +1,22 @@
+CREATE DATABASE karma;
+USE karma;
+CREATE TABLE served(
+served_id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+served_name nvarchar NOT NULL
+served_grade int(3)  ,
+served_phone nvarchar(11) ,
+served_confession_father(50) ,
+served_birthday date
+);
+
+CREATE TABLE meetings(
+meetings_id INT  IDENTITY(1,1) NOT NULL,
+meetings_date date PRIMARY KEY NOT NULL);
+
+CREATE TABLE attend(
+served_id int FOREIGN KEY REFERENCES served(served_id),
+meetings_id date FOREIGN KEY REFERENCES meetings(meetings_date),
+bible bit default '0' NOT NULL,
+notebook bit default '0' NOT NULL,
+attendence_date date NOT NULL
+PRIMARY KEY(served_id,meetings_id));
