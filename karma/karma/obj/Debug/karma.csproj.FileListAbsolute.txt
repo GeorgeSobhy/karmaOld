@@ -1,0 +1,13 @@
+E:\E\programming\github\karma\karma\karma\bin\Debug\karma.exe.config
+E:\E\programming\github\karma\karma\karma\bin\Debug\karma.exe
+E:\E\programming\github\karma\karma\karma\bin\Debug\karma.pdb
+E:\E\programming\github\karma\karma\karma\obj\Debug\karma.csprojResolveAssemblyReference.cache
+E:\E\programming\github\karma\karma\karma\obj\Debug\karma.Properties.Resources.resources
+E:\E\programming\github\karma\karma\karma\obj\Debug\karma.csproj.GenerateResource.Cache
+E:\E\programming\github\karma\karma\karma\obj\Debug\karma.exe
+E:\E\programming\github\karma\karma\karma\obj\Debug\karma.pdb
+E:\E\programming\github\karma\karma\karma\obj\Debug\karma.karma_main_form.resources
+E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.dll
+E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.SqlServer.dll
+E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.xml
+E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.SqlServer.xml
