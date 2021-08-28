@@ -52,9 +52,23 @@
             this.reportAboutSixMonths_button = new System.Windows.Forms.ToolStripMenuItem();
             this.reportAboutYear_button = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewServed_button = new System.Windows.Forms.ToolStripMenuItem();
+            this.add_panel = new System.Windows.Forms.Panel();
+            this.add_main_label = new System.Windows.Forms.Label();
+            this.add_newServed_button = new System.Windows.Forms.Button();
+            this.add_name_label = new System.Windows.Forms.Label();
+            this.add_name_textBox = new System.Windows.Forms.TextBox();
+            this.add_grade_comboBox = new System.Windows.Forms.ComboBox();
+            this.add_grade_label = new System.Windows.Forms.Label();
+            this.add_phone_label = new System.Windows.Forms.Label();
+            this.add_phone_textBox = new System.Windows.Forms.TextBox();
+            this.add_father_label = new System.Windows.Forms.Label();
+            this.add_father_comboBox = new System.Windows.Forms.ComboBox();
+            this.add_birthday_dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.add_birthday_label = new System.Windows.Forms.Label();
             this.attendence_panel.SuspendLayout();
             this.attendence_attended_panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.add_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // attendence_panel
@@ -306,12 +320,172 @@
             this.addNewServed_button.Size = new System.Drawing.Size(312, 49);
             this.addNewServed_button.Text = "اضافة بيانات مخدوم جديد";
             // 
+            // add_panel
+            // 
+            this.add_panel.Controls.Add(this.add_birthday_label);
+            this.add_panel.Controls.Add(this.add_birthday_dateTimePicker);
+            this.add_panel.Controls.Add(this.add_father_label);
+            this.add_panel.Controls.Add(this.add_father_comboBox);
+            this.add_panel.Controls.Add(this.add_phone_label);
+            this.add_panel.Controls.Add(this.add_phone_textBox);
+            this.add_panel.Controls.Add(this.add_grade_label);
+            this.add_panel.Controls.Add(this.add_grade_comboBox);
+            this.add_panel.Controls.Add(this.add_newServed_button);
+            this.add_panel.Controls.Add(this.add_name_label);
+            this.add_panel.Controls.Add(this.add_name_textBox);
+            this.add_panel.Controls.Add(this.add_main_label);
+            this.add_panel.Location = new System.Drawing.Point(3, 112);
+            this.add_panel.Name = "add_panel";
+            this.add_panel.Size = new System.Drawing.Size(1116, 624);
+            this.add_panel.TabIndex = 5;
+            this.add_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.add_panel_Paint);
+            // 
+            // add_main_label
+            // 
+            this.add_main_label.AutoSize = true;
+            this.add_main_label.Font = new System.Drawing.Font("Tahoma", 27F);
+            this.add_main_label.Location = new System.Drawing.Point(388, 19);
+            this.add_main_label.Name = "add_main_label";
+            this.add_main_label.Size = new System.Drawing.Size(371, 54);
+            this.add_main_label.TabIndex = 3;
+            this.add_main_label.Text = "اضافة مخدوم جديد";
+            // 
+            // add_newServed_button
+            // 
+            this.add_newServed_button.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.add_newServed_button.Location = new System.Drawing.Point(478, 507);
+            this.add_newServed_button.Name = "add_newServed_button";
+            this.add_newServed_button.Size = new System.Drawing.Size(256, 58);
+            this.add_newServed_button.TabIndex = 7;
+            this.add_newServed_button.Text = "اضافة";
+            this.add_newServed_button.UseVisualStyleBackColor = true;
+            // 
+            // add_name_label
+            // 
+            this.add_name_label.AutoSize = true;
+            this.add_name_label.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.add_name_label.Location = new System.Drawing.Point(894, 172);
+            this.add_name_label.Name = "add_name_label";
+            this.add_name_label.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.add_name_label.Size = new System.Drawing.Size(177, 35);
+            this.add_name_label.TabIndex = 6;
+            this.add_name_label.Text = "اسم المخدوم";
+            // 
+            // add_name_textBox
+            // 
+            this.add_name_textBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.add_name_textBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.add_name_textBox.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_name_textBox.Location = new System.Drawing.Point(677, 224);
+            this.add_name_textBox.Name = "add_name_textBox";
+            this.add_name_textBox.Size = new System.Drawing.Size(388, 35);
+            this.add_name_textBox.TabIndex = 5;
+            this.add_name_textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // add_grade_comboBox
+            // 
+            this.add_grade_comboBox.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.add_grade_comboBox.FormattingEnabled = true;
+            this.add_grade_comboBox.Items.AddRange(new object[] {
+            "الصف الاول",
+            "الصف الثانى",
+            "الصف الثالث"});
+            this.add_grade_comboBox.Location = new System.Drawing.Point(533, 394);
+            this.add_grade_comboBox.Name = "add_grade_comboBox";
+            this.add_grade_comboBox.Size = new System.Drawing.Size(173, 35);
+            this.add_grade_comboBox.TabIndex = 8;
+            // 
+            // add_grade_label
+            // 
+            this.add_grade_label.AutoSize = true;
+            this.add_grade_label.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.add_grade_label.Location = new System.Drawing.Point(511, 326);
+            this.add_grade_label.Name = "add_grade_label";
+            this.add_grade_label.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.add_grade_label.Size = new System.Drawing.Size(201, 35);
+            this.add_grade_label.TabIndex = 9;
+            this.add_grade_label.Text = "السنة الدراسية";
+            // 
+            // add_phone_label
+            // 
+            this.add_phone_label.AutoSize = true;
+            this.add_phone_label.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.add_phone_label.Location = new System.Drawing.Point(314, 172);
+            this.add_phone_label.Name = "add_phone_label";
+            this.add_phone_label.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.add_phone_label.Size = new System.Drawing.Size(149, 35);
+            this.add_phone_label.TabIndex = 11;
+            this.add_phone_label.Text = "رقم التلفون";
+            // 
+            // add_phone_textBox
+            // 
+            this.add_phone_textBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.add_phone_textBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.add_phone_textBox.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_phone_textBox.Location = new System.Drawing.Point(69, 224);
+            this.add_phone_textBox.Name = "add_phone_textBox";
+            this.add_phone_textBox.Size = new System.Drawing.Size(388, 35);
+            this.add_phone_textBox.TabIndex = 10;
+            this.add_phone_textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // add_father_label
+            // 
+            this.add_father_label.AutoSize = true;
+            this.add_father_label.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.add_father_label.Location = new System.Drawing.Point(921, 326);
+            this.add_father_label.Name = "add_father_label";
+            this.add_father_label.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.add_father_label.Size = new System.Drawing.Size(150, 35);
+            this.add_father_label.TabIndex = 13;
+            this.add_father_label.Text = "اب الاعتراف";
+            // 
+            // add_father_comboBox
+            // 
+            this.add_father_comboBox.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.add_father_comboBox.FormattingEnabled = true;
+            this.add_father_comboBox.Items.AddRange(new object[] {
+            "ابونا بافلى ",
+            "ابونا يوليوس",
+            "ابونا موسى ",
+            "ابونا اندراوس",
+            "ابونا داود",
+            "ابونا مرقس",
+            "غير ذلك"});
+            this.add_father_comboBox.Location = new System.Drawing.Point(892, 394);
+            this.add_father_comboBox.Name = "add_father_comboBox";
+            this.add_father_comboBox.Size = new System.Drawing.Size(173, 35);
+            this.add_father_comboBox.TabIndex = 12;
+            // 
+            // add_birthday_dateTimePicker
+            // 
+            this.add_birthday_dateTimePicker.CalendarFont = new System.Drawing.Font("Tahoma", 20F);
+            this.add_birthday_dateTimePicker.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.add_birthday_dateTimePicker.Location = new System.Drawing.Point(23, 397);
+            this.add_birthday_dateTimePicker.MinDate = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
+            this.add_birthday_dateTimePicker.Name = "add_birthday_dateTimePicker";
+            this.add_birthday_dateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.add_birthday_dateTimePicker.Size = new System.Drawing.Size(349, 32);
+            this.add_birthday_dateTimePicker.TabIndex = 14;
+            this.add_birthday_dateTimePicker.Value = new System.DateTime(2007, 6, 15, 0, 0, 0, 0);
+            // 
+            // add_birthday_label
+            // 
+            this.add_birthday_label.AutoSize = true;
+            this.add_birthday_label.Font = new System.Drawing.Font("Tahoma", 17F);
+            this.add_birthday_label.Location = new System.Drawing.Point(159, 326);
+            this.add_birthday_label.Name = "add_birthday_label";
+            this.add_birthday_label.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.add_birthday_label.Size = new System.Drawing.Size(219, 35);
+            this.add_birthday_label.TabIndex = 15;
+            this.add_birthday_label.Text = " تاريخ عيد الميلاد";
+            // 
             // karma_main_form
             // 
             this.AcceptButton = this.attendence_search_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1119, 699);
+            this.Controls.Add(this.add_panel);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.attendence_panel);
             this.Name = "karma_main_form";
@@ -323,6 +497,8 @@
             this.attendence_attended_panel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.add_panel.ResumeLayout(false);
+            this.add_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,6 +530,19 @@
         private System.Windows.Forms.Label attendence_noMeeting_label;
         private System.Windows.Forms.Button attendence_todayIsMeeting_button;
         private System.Windows.Forms.Button attendence_cancelAttendence_button;
+        private System.Windows.Forms.Panel add_panel;
+        private System.Windows.Forms.ComboBox add_grade_comboBox;
+        private System.Windows.Forms.Button add_newServed_button;
+        private System.Windows.Forms.Label add_name_label;
+        private System.Windows.Forms.TextBox add_name_textBox;
+        private System.Windows.Forms.Label add_main_label;
+        private System.Windows.Forms.Label add_grade_label;
+        private System.Windows.Forms.Label add_phone_label;
+        private System.Windows.Forms.TextBox add_phone_textBox;
+        private System.Windows.Forms.Label add_father_label;
+        private System.Windows.Forms.ComboBox add_father_comboBox;
+        private System.Windows.Forms.Label add_birthday_label;
+        private System.Windows.Forms.DateTimePicker add_birthday_dateTimePicker;
     }
 }
 

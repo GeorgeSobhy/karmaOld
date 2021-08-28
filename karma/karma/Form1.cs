@@ -270,5 +270,10 @@ namespace karma
             cmd.ExecuteNonQuery();
             attendence_attended_panel.Visible = false;
         }
+
+        private void add_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
