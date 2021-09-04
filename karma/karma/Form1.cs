@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using WinFormAnimation;
+using CircularProgressBar;
 
 namespace karma
 {
@@ -141,6 +143,11 @@ namespace karma
             //autocomplete text box with the names of the served
             autocomplete_textBox_tool();
 
+            //default selected items in add page
+            add_grade_comboBox.SelectedIndex = 0;
+            add_father_comboBox.SelectedIndex = 0;
+
+
         }
 
         private void attendence_panel_correct_Paint(object sender, PaintEventArgs e)
@@ -258,7 +265,6 @@ namespace karma
 
                 }
             }
-            //cmd =new SqlCommand("SELECT * FROM served WHERE name")
         }
 
         private void attendence_cancelAttendence_button_Click(object sender, EventArgs e)
@@ -274,6 +280,99 @@ namespace karma
         private void add_panel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void add_newServed_button_Click(object sender, EventArgs e)
+        {
+            //reset all warning labels to be hiden
+            add_nameWarning_label.Visible = false;
+            add_phoneWarning_label.Visible = false;
+            add_dateWarning_label.Visible = false;
+            bool nameCheckerBoolean = false, phoneCheckerBoolean = false, dateCheckerBoolean = false;
+
+            //validation fileds to add its to database
+            if (!(add_name_textBox.Text.All(char.IsLetter))||add_name_textBox.Text==string.Empty)
+            {
+                nameCheckerBoolean = true;
+            }
+            if (add_phone_textBox.Text == string.Empty ||!(add_phone_textBox.Text.Length==11))
+            {
+                phoneCheckerBoolean = true;
+            }
+            if(add_birthday_dateTimePicker.Text== "Thursday, August 30, 2001")
+            {
+                dateCheckerBoolean = true;
+            }
+            else
+            {
+                Clipboard.SetText(add_birthday_dateTimePicker.Text);
+            }
+            //if there is any problem with the validation
+            //goto k270 
+            if(nameCheckerBoolean||phoneCheckerBoolean||dateCheckerBoolean)
+                goto k270;
+            //adding data to system
+            cmd = new SqlCommand("INSERT INTO served (served_name,served_phone,served_grade,served_confession_father,served_birthday) VALUES (@name,@phone,@grade,@father,@date);",con);
+            cmd.Parameters.AddWithValue("@name",add_name_textBox.Text);
+            cmd.Parameters.AddWithValue("@phone",add_phone_textBox.Text);
+            cmd.Parameters.AddWithValue("@grade",add_grade_comboBox.SelectedIndex+1);
+            cmd.Parameters.AddWithValue("@father",add_father_comboBox.Text);
+            cmd.Parameters.AddWithValue("@date",add_birthday_dateTimePicker.Value);
+            cmd.ExecuteNonQuery();
+            //show up add successfuly and clear the fileds from data
+            MessageBox.Show("تم اضافة " + add_name_textBox.Text + " بنجاح");
+            add_name_textBox.Text = string.Empty;
+            add_phone_textBox.Text = string.Empty;
+            add_grade_comboBox.SelectedIndex = 0;
+            add_birthday_dateTimePicker.Value = Convert.ToDateTime("Thursday, August 30, 2001");
+            add_father_comboBox.SelectedIndex = 0;
+
+
+            //clear the filed with problem and appear red warning close of it
+            k270:
+            if (nameCheckerBoolean)
+            {
+                add_name_textBox.Text = string.Empty;
+                add_nameWarning_label.Visible = true;
+
+            }
+            if (phoneCheckerBoolean)
+            {
+                add_phone_textBox.Text = string.Empty;
+                add_phoneWarning_label.Visible = true;
+            }
+            if (dateCheckerBoolean)
+            {
+                add_dateWarning_label.Visible = true;
+            }
+
+
+
+        }
+
+        private void report_period_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void report_Period_main_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void report_period_choosePeriod_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void karma_main_form_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void report_served_panel_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
     }
 }

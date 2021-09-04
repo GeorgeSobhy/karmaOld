@@ -11,3 +11,6 @@ E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.dll
 E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.SqlServer.dll
 E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.xml
 E:\E\programming\github\karma\karma\karma\bin\Debug\EntityFramework.SqlServer.xml
+E:\E\programming\github\karma\karma\karma\bin\Debug\CircularProgressBar.dll
+E:\E\programming\github\karma\karma\karma\bin\Debug\WinFormAnimation.dll
+E:\E\programming\github\karma\karma\karma\bin\Debug\CircularProgressBar.xml
