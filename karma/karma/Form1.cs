@@ -99,6 +99,7 @@ namespace karma
             //autocomplete text box with the names of the served to help user with names
             AutoCompleteStringCollection col = new AutoCompleteStringCollection();
             attendence_search_textBox.AutoCompleteCustomSource = col;
+            report_served_showResult_textBox.AutoCompleteCustomSource = col;
             dt.Clear();
             cmd = new SqlCommand("USE karma;SELECT * FROM served ;", con);
             cmd.ExecuteNonQuery();
@@ -118,6 +119,11 @@ namespace karma
         public static int served_id;
         public static int meetings_id;
         public static string served_name;
+        public static string served_confession_father;
+        public static DateTime served_birthday;
+        public static string served_phone;
+        public static string served_grade;
+
 
 
         //setup the connection variables 
@@ -134,7 +140,6 @@ namespace karma
 
             //creating the form
             InitializeComponent();
-
             //checking if today is in meetings dates and 
             //if there is meeting today :it creates new meeting date in database
             //if there isn't meeting : disable the button and textbox of attendence page
@@ -265,6 +270,7 @@ namespace karma
 
                 }
             }
+
         }
 
         private void attendence_cancelAttendence_button_Click(object sender, EventArgs e)
@@ -303,10 +309,7 @@ namespace karma
             {
                 dateCheckerBoolean = true;
             }
-            else
-            {
-                Clipboard.SetText(add_birthday_dateTimePicker.Text);
-            }
+            
             //if there is any problem with the validation
             //goto k270 
             if(nameCheckerBoolean||phoneCheckerBoolean||dateCheckerBoolean)
@@ -374,5 +377,135 @@ namespace karma
         {
             
         }
+
+        private void report_served_details_tableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void report_served_details_id_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void report_served_details_name_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void report_served_details_main_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void report_served_showResult_button_Click(object sender, EventArgs e)
+        {
+            
+            //make sure that text box is not empty
+            if (report_served_showResult_textBox.Text != string.Empty)
+            {
+                
+                //check if the text box value is name or id number
+                if (Convert.ToInt16(report_served_showResult_textBox.Text[0]) >= 48 && Convert.ToInt16(report_served_showResult_textBox.Text[0]) <= 57)
+                {
+                    
+                    //fetch served_name and served_id
+                    cmd = new SqlCommand("SELECT * FROM served WHERE served_id ='" + Convert.ToInt16(report_served_showResult_textBox.Text) + "';", con);
+                    cmd.ExecuteNonQuery();
+                    adapt = new SqlDataAdapter(cmd);
+                    dt.Clear();
+                    adapt.Fill(dt);
+                    served_id = Convert.ToInt16(dt.Rows[0]["served_id"]);
+                    served_name = dt.Rows[0]["served_name"].ToString();
+                    served_confession_father = dt.Rows[0]["served_confession_father"].ToString();
+                    served_birthday = Convert.ToDateTime(dt.Rows[0]["served_birthday"]);
+                    served_grade = (Convert.ToInt16(dt.Rows[0]["served_grade"]) == 1) ? "الاول" : (Convert.ToInt16(dt.Rows[0]["served_grade"]) == 2)? "الثانى":"الثالث";
+                    
+                    
+                    
+
+                    if (dt.Rows.Count > 0)
+                    {
+
+                        //giving values to items of the page
+                        report_served_details_variableDate_label.Text = served_birthday.ToShortDateString();
+                        report_served_details_variableFather_label.Text = served_confession_father;
+                        report_served_details_variableId_label.Text = Convert.ToString(served_id);
+                        report_served_details_variableName_label.Text = served_name;
+                        report_served_details_variablePhone_label.Text = served_phone;
+                        report_served_details_variableGrade_label.Text = served_grade;
+
+                        //showing up the items of the page
+                        report_served_weeksDetails_dataGridView.Visible = true;
+                        report_served_attendence_circularProgressBar.Visible = true;
+                        report_served_attendence_label.Visible = true;
+                        report_served_details_tableLayoutPanel.Visible = true;
+                        report_served_weeksDetails_label.Visible = true;
+
+                        
+                        cmd = new SqlCommand("SELECT attendence_date  as 'وقت و تاريخ الحضور'FROM attend where served_id= " + served_id + ";", con);
+                        cmd.ExecuteNonQuery();
+                        adapt = new SqlDataAdapter(cmd);
+                        dt.Columns.Clear();
+                        dt.Clear();
+
+                        adapt.Fill(dt);
+                        DataTable dtCloned = new DataTable();
+                        dtCloned.Columns.Add("تاريخ الاجتماع",typeof(DateTime));
+                        dtCloned.Columns.Add("وقت الحضور", typeof(string));
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            
+                            dtCloned.Rows.Add(Convert.ToDateTime(dt.Rows[i].ItemArray[0].ToString()).ToShortDateString(), Convert.ToDateTime(dt.Rows[i].ItemArray[0].ToString()).ToString("hh:mm tt"));
+                        }
+                        report_served_weeksDetails_dataGridView.DataSource = dtCloned;
+                        
+                    }
+                }
+                else
+                {
+                    cmd = new SqlCommand("SELECT * FROM served WHERE served_name Like'%" + attendence_search_textBox.Text + "%';", con);
+                    cmd.ExecuteNonQuery();
+                    adapt = new SqlDataAdapter(cmd);
+                    dt.Clear();
+                    adapt.Fill(dt);
+
+
+
+                    if (dt.Rows.Count == 1)
+                    {
+                        served_id = Convert.ToInt16(dt.Rows[0]["served_id"]);
+                        served_name = dt.Rows[0]["served_name"].ToString();
+                        //check if served attended before or not
+                        cmd = new SqlCommand("SELECT * FROM attend WHERE served_id =" + served_id + "and meetings_id=" + meetings_id + ";", con);
+                        cmd.ExecuteNonQuery();
+                        adapt = new SqlDataAdapter(cmd);
+                        dt.Clear();
+                        adapt.Fill(dt);
+                        if (dt.Rows.Count == 0)
+                        {
+                            cmd = new SqlCommand("INSERT INTO attend (served_id,meetings_id)VALUES(@s_id,@m_id);", con);
+                            cmd.Parameters.AddWithValue("@s_id", Convert.ToInt16(served_id));
+                            cmd.Parameters.AddWithValue("@m_id", Convert.ToInt16(meetings_id));
+                            cmd.ExecuteNonQuery();
+
+                            //set up attended panel
+                            attendence_search_textBox.Text = string.Empty;
+                            attendence_attended_panel.Visible = true;
+                            attendence_id_variable_label.Text = Convert.ToString(served_id);
+                            attendence_variable_name_label.Text = served_name;
+                        }
+                        else
+                        {
+                            MessageBox.Show("تم حضور هذا الاسم من قبل");
+                            attendence_search_textBox.Text = string.Empty;
+                        }
+                    }
+
+                }
+                
+            }
+            
+                }
     }
 }

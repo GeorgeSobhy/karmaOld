@@ -7,6 +7,7 @@ served_grade int,
 served_phone nvarchar(11) ,
 served_confession_father nvarchr(50) ,
 served_birthday date
+served_addationDate date NOT NULL default GETDATE()
 );
 
 CREATE TABLE meetings(

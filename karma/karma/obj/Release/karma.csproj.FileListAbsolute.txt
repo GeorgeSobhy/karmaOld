@@ -1,0 +1,3 @@
+E:\E\programming\github\karma\karma\karma\obj\Release\karma.karma_main_form.resources
+E:\E\programming\github\karma\karma\karma\obj\Release\karma.Properties.Resources.resources
+E:\E\programming\github\karma\karma\karma\obj\Release\karma.csproj.GenerateResource.Cache
